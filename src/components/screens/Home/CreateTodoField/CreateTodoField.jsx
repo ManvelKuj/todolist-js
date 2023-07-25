@@ -10,7 +10,7 @@ export const CreateTodoField = ({ addTodo }) => {
   return (
     <div className="relative mb-10">
       <input type="text"
-        className='w-full bg-transparent h-12 border-2 rounded-2xl border-bgitem outline-none pl-14 text-white'
+        className='w-full bg-transparent h-11 border-2 rounded-2xl border-bgitem outline-none pl-14 text-white'
         onChange={e => setTitle(e.target.value)}
         value={title}
         onKeyDown={(e) => e.key === 'Enter' && handleAddTodo()}
