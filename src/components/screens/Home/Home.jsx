@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { todoData } from './todos';
 import TodoItem from './TodoItem/TodoItem';
 import { CreateTodoField } from './CreateTodoField/CreateTodoField';
+import { TodoFooter } from './TodoFooter/TodoFooter';
 export const Home = () => {
   const [todos, setTodos] = useState(todoData);
 
@@ -29,16 +30,21 @@ export const Home = () => {
 
   const todoRemove = id => setTodos([...todos].filter(t => t.id !== id))
 
+  const onClearCompleted = () => {
+    setTodos(todos.filter((todo) => !todo.isCompleted))
+  }
   return (
     <div className='bg-bgtodo h-full py-14'>
       <div className='max-w-screen-md mx-auto'>
         <CreateTodoField addTodo={addTodo} />
         <p className='text-white mb-5'>{(todos.length === 0) ? 'No tasks' : (todos.length === 1) ? ` Task  - ${todos.length}` : ` Tasks  - ${todos.length}`}</p>
-
         {todos.map((todo) => (
           <TodoItem key={todo.id} todo={todo} isCompleted={isCompleted} todoRemove={todoRemove} />
         ))}
+        <TodoFooter todos={todos} onClearCompleted={onClearCompleted} />
+
       </div>
     </div>
   );
 };
+
